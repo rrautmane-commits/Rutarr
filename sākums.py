@@ -1,5 +1,8 @@
 import tkinter as tk
-
+def add_choice ():
+  text = entry.get()
+  listbox.insert(tk.END, text)
+  
 root = tk.Tk()
 root.title("Magic 8 Ball")
 
