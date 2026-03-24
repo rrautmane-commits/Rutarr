@@ -4,7 +4,7 @@ def add_choice ():
   listbox.insert(tk.END, text)
   
 root = tk.Tk()
-root.title("Magic 8 Ball")
+root.title("Magic 8 Ball +")
 
 entry = tk.Entry(root)
 entry.pack()
