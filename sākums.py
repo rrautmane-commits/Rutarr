@@ -9,4 +9,8 @@ entry.pack()
 button = tk.Button(root, text="Pievienot")
 button.pack()
 
+listbox = tk.Listboz(root)
+listbox.pack()
+
 root.mainloop()
+
