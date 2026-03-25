@@ -1,6 +1,4 @@
-git add .
-git commit -m "8ball+"
-git push
+
 import tkinter as tk
 def add_choice ():
   text = entry.get()
@@ -18,5 +16,13 @@ button.pack()
 listbox = tk.Listbox(root)
 listbox.pack()
 
+import random
+
+def pick_choice():
+    if listbox.size() == 0:
+        result_label.config(text="Saraksts ir tukšs")
+    else:
+        random_choice = random.choice(listbox.get(0, tk.END))
+        result_label.config(text=random_choice)
 root.mainloop()
 
