@@ -1,3 +1,6 @@
+git add .
+git commit -m "8ball+"
+git push
 import tkinter as tk
 def add_choice ():
   text = entry.get()
