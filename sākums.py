@@ -1,22 +1,9 @@
-
 import tkinter as tk
-def add_choice ():
-  text = entry.get()
-  listbox.insert(tk.END, text)
-  
-root = tk.Tk()
-root.title("Magic 8 Ball +")
-
-entry = tk.Entry(root)
-entry.pack()
-
-button = tk.Button(root, text="Pievienot")
-button.pack()
-
-listbox = tk.Listbox(root)
-listbox.pack()
-
 import random
+
+def add_choice():
+    text = entry.get()
+    listbox.insert(tk.END, text)
 
 def pick_choice():
     if listbox.size() == 0:
@@ -24,5 +11,23 @@ def pick_choice():
     else:
         random_choice = random.choice(listbox.get(0, tk.END))
         result_label.config(text=random_choice)
-root.mainloop()
 
+root = tk.Tk()
+root.title("Magic 8 Ball +")
+
+entry = tk.Entry(root)
+entry.pack()
+
+button = tk.Button(root, text="Pievienot", command=add_choice)
+button.pack()
+
+listbox = tk.Listbox(root)
+listbox.pack()
+
+pick_button = tk.Button(root, text="Izvēlēties", command=pick_choice)
+pick_button.pack()
+
+result_label = tk.Label(root, text="")
+result_label.pack()
+
+root.mainloop()
