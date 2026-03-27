@@ -2,12 +2,23 @@ import tkinter as tk
 import random
 
 def add_choice():
+
     text = entry.get()
-    listbox.insert(tk.END, text)
+
+    if text == "":
+        result_label.config(text="Lūdzu ievadi izvēli")
+    else:
+        listbox.insert(tk.END, text)
+        
+        entry.delete(0, tk.END)
+
+        result_label.config(text="")
 
 def pick_choice():
+
     if listbox.size() == 0:
         result_label.config(text="Saraksts ir tukšs")
+
     else:
         random_choice = random.choice(listbox.get(0, tk.END))
         result_label.config(text=random_choice)
