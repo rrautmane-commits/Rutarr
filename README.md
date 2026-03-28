@@ -7,6 +7,7 @@ Magic 8 Ball + ir Python programma, kas palīdz lietotājam pieņemt lēmumus. L
 Programmas mērķis ir izveidot vienkāršu un intuitīvu rīku lēmumu pieņemšanai, izmantojot grafisko lietotāja saskarni (GUI) un nejaušas izvēles algoritmu ar svaru sistēmu.
 
 Funkcijas:
+
 izvēļu pievienošana
 svaru piešķiršana katrai izvēlei
 nejauša izvēle, ņemot vērā svarus
