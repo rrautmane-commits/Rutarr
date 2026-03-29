@@ -1,35 +1,47 @@
 import tkinter as tk
 import random
 
+choices = []
+weights = []
+
 def add_choice():
 
-    text = entry.get()
+    text = entry_choice.get()
+    weight = entry_weight.get()
 
-    if text == "":
-        result_label.config(text="Lūdzu ievadi izvēli")
+    if text == "" or weight == "":
+        result_label.config(text="Aizpildi abus laukus")
+        return
 
-    else:
-        listbox.insert(tk.END, text)
+    if not weight.isdigit():
+        result_label.config(text="Svars jābūt skaitlim")
+        return
 
-        entry.delete(0, tk.END)
+    choices.append(text)
+    weights.append(int(weight))
 
-        result_label.config(text="")
+    listbox.insert(tk.END, f"{text} ({weight})")
+
+    entry_choice.delete(0, tk.END)
+    entry_weight.delete(0, tk.END)
+
+    result_label.config(text="")
 
 
 def pick_choice():
 
-    if listbox.size() == 0:
+    if len(choices) == 0:
         result_label.config(text="Saraksts ir tukšs")
 
     else:
-        random_choice = random.choice(listbox.get(0, tk.END))
+        result = random.choices(choices, weights=weights)[0]
 
-        result_label.config(text="Rezultāts: " + random_choice)
+        result_label.config(text="Rezultāts: " + result)
 
 
 root = tk.Tk()
 root.title("Magic 8 Ball +")
-root.geometry("320x350")
+root.geometry("340x380")
 
 
 title_label = tk.Label(
@@ -41,17 +53,16 @@ title_label = tk.Label(
 title_label.pack(pady=8)
 
 
-entry_label = tk.Label(
-    root,
-    text="Ievadi izvēli:"
-)
+tk.Label(root, text="Izvēle:").pack()
 
-entry_label.pack()
+entry_choice = tk.Entry(root, width=25)
+entry_choice.pack(pady=3)
 
 
-entry = tk.Entry(root, width=25)
+tk.Label(root, text="Svars (1-10):").pack()
 
-entry.pack(pady=5)
+entry_weight = tk.Entry(root, width=10)
+entry_weight.pack(pady=3)
 
 
 button = tk.Button(
