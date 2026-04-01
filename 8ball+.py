@@ -31,74 +31,72 @@ def add_choice():
 def pick_choice():
 
     if len(choices) == 0:
-        result_label.config(text="Saraksts ir tukšs")
-
+        result_label.config(text="Nav izvēļu")
     else:
         result = random.choices(choices, weights=weights)[0]
-
         result_label.config(text="Rezultāts: " + result)
 
 
 root = tk.Tk()
 root.title("Magic 8 Ball +")
-root.geometry("340x380")
+root.geometry("360x400")
 
 
 title_label = tk.Label(
     root,
     text="Magic 8 Ball +",
-    font=("Arial", 14, "bold")
+    font=("Arial", 16, "bold")
 )
-
-title_label.pack(pady=8)
-
-
-tk.Label(root, text="Izvēle:").pack()
-
-entry_choice = tk.Entry(root, width=25)
-entry_choice.pack(pady=3)
+title_label.pack(pady=10)
 
 
-tk.Label(root, text="Svars (1-10):").pack()
-
-entry_weight = tk.Entry(root, width=10)
-entry_weight.pack(pady=3)
+input_frame = tk.Frame(root)
+input_frame.pack()
 
 
-button = tk.Button(
-    root,
+tk.Label(input_frame, text="Izvēle").grid(row=0, column=0)
+tk.Label(input_frame, text="Svars").grid(row=0, column=1)
+
+
+entry_choice = tk.Entry(input_frame, width=18)
+entry_choice.grid(row=1, column=0, padx=5)
+
+
+entry_weight = tk.Entry(input_frame, width=8)
+entry_weight.grid(row=1, column=1, padx=5)
+
+
+add_button = tk.Button(
+    input_frame,
     text="Pievienot",
     command=add_choice
 )
-
-button.pack(pady=5)
+add_button.grid(row=1, column=2, padx=5)
 
 
 listbox = tk.Listbox(
     root,
-    width=30,
-    height=6
+    width=35,
+    height=7
 )
-
-listbox.pack(pady=10)
+listbox.pack(pady=15)
 
 
 pick_button = tk.Button(
     root,
     text="Izvēlēties",
     command=pick_choice,
-    width=15
+    width=18,
+    height=2
 )
-
-pick_button.pack(pady=5)
+pick_button.pack()
 
 
 result_label = tk.Label(
     root,
     text="",
-    font=("Arial", 11)
+    font=("Arial", 12)
 )
-
 result_label.pack(pady=10)
 
 
