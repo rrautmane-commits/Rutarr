@@ -17,8 +17,14 @@ def add_choice():
         result_label.config(text="Svars jābūt skaitlim")
         return
 
+    weight = int(weight)
+
+    if weight < 1 or weight > 10:
+        result_label.config(text="Svars jābūt no 1 līdz 10")
+        return
+
     choices.append(text)
-    weights.append(int(weight))
+    weights.append(weight)
 
     listbox.insert(tk.END, f"{text} ({weight})")
 
@@ -55,7 +61,7 @@ input_frame.pack()
 
 
 tk.Label(input_frame, text="Izvēle").grid(row=0, column=0)
-tk.Label(input_frame, text="Svars").grid(row=0, column=1)
+tk.Label(input_frame, text="Svars (1-10)").grid(row=0, column=1)
 
 
 entry_choice = tk.Entry(input_frame, width=18)
