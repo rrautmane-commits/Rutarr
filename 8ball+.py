@@ -71,6 +71,8 @@ entry_choice.grid(row=1, column=0, padx=5)
 entry_weight = tk.Entry(input_frame, width=8)
 entry_weight.grid(row=1, column=1, padx=5)
 
+entry_weight.bind("<Return>", lambda event: add_choice())
+
 
 add_button = tk.Button(
     input_frame,
