@@ -42,10 +42,20 @@ def pick_choice():
         result = random.choices(choices, weights=weights)[0]
         result_label.config(text="Rezultāts: " + result)
 
+def save_choices():
+
+    with open("choices.txt", "w") as file:
+
+        for i in range(len(choices)):
+
+            file.write(f"{choices[i]},{weights[i]}\n")
+
+    result_label.config(text="Saglabāts failā")
+
 
 root = tk.Tk()
 root.title("Magic 8 Ball +")
-root.geometry("360x400")
+root.geometry("360x430")
 
 
 title_label = tk.Label(
@@ -70,6 +80,7 @@ entry_choice.grid(row=1, column=0, padx=5)
 
 entry_weight = tk.Entry(input_frame, width=8)
 entry_weight.grid(row=1, column=1, padx=5)
+
 
 entry_weight.bind("<Return>", lambda event: add_choice())
 
@@ -97,7 +108,16 @@ pick_button = tk.Button(
     width=18,
     height=2
 )
-pick_button.pack()
+pick_button.pack(pady=5)
+
+
+# JAUNĀ POGA
+save_button = tk.Button(
+    root,
+    text="Saglabāt",
+    command=save_choices
+)
+save_button.pack()
 
 
 result_label = tk.Label(
