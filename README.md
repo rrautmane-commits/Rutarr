@@ -19,7 +19,7 @@ Uzstādīšanas instrukcija
 1. Instalēt Python:
 https://www.python.org/downloads/
 2. Lejupielādēt projekta failu:
-magic8ball.py
+magic8ball+.py
 3. Palaist programmu terminālī:
-python3 magic8ball.py
+python3 magic8ball+.py
 4. Tiks atvērts programmas logs, kur iespējams ievadīt izvēles un veikt nejaušu izvēli.
