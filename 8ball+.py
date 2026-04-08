@@ -42,20 +42,43 @@ def pick_choice():
         result = random.choices(choices, weights=weights)[0]
         result_label.config(text="Rezultāts: " + result)
 
+
 def save_choices():
 
     with open("choices.txt", "w") as file:
 
         for i in range(len(choices)):
-
             file.write(f"{choices[i]},{weights[i]}\n")
 
     result_label.config(text="Saglabāts failā")
 
 
+def load_choices():
+
+    choices.clear()
+    weights.clear()
+    listbox.delete(0, tk.END)
+
+    try:
+        with open("choices.txt", "r") as file:
+
+            for line in file:
+                text, weight = line.strip().split(",")
+
+                choices.append(text)
+                weights.append(int(weight))
+
+                listbox.insert(tk.END, f"{text} ({weight})")
+
+        result_label.config(text="Dati ielādēti")
+
+    except FileNotFoundError:
+        result_label.config(text="Fails nav atrasts")
+
+
 root = tk.Tk()
 root.title("Magic 8 Ball +")
-root.geometry("360x430")
+root.geometry("360x460")
 
 
 title_label = tk.Label(
@@ -111,13 +134,26 @@ pick_button = tk.Button(
 pick_button.pack(pady=5)
 
 
-# JAUNĀ POGA
+buttons_frame = tk.Frame(root)
+buttons_frame.pack(pady=5)
+
+
 save_button = tk.Button(
-    root,
+    buttons_frame,
     text="Saglabāt",
-    command=save_choices
+    command=save_choices,
+    width=12
 )
-save_button.pack()
+save_button.grid(row=0, column=0, padx=5)
+
+
+load_button = tk.Button(
+    buttons_frame,
+    text="Ielādēt",
+    command=load_choices,
+    width=12
+)
+load_button.grid(row=0, column=1, padx=5)
 
 
 result_label = tk.Label(
